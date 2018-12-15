@@ -1,23 +1,23 @@
 #!/bin/bash
 pushd ~/
-if ! ls ~/.cache/blender; then
-	mkdir -p .cache/blender
+if ! ls ~/.cache/blender7; then
+	mkdir -p .cache/blender7
 fi
 
 if ! curl google.com; then
 	echo "curl not installed or no internet"
-	if [ -e .cache/blender/blender/blender ]; then
-		.cache/blender/blender/blender
+	if [ -e .cache/blender7/blender/blender ]; then
+		.cache/blender7/blender/blender
 	else
 		exit 0
 	fi
 else
-	echo internet >.cache/blender/internet.txt
+	echo internet >.cache/blender7/internet.txt
 fi
 
 
-if [ -e .cache/blender/internet.txt ]; then
-	cd .cache/blender
+if [ -e .cache/blender7/internet.txt ]; then
+	cd .cache/blender7
 	rm internet.txt
 	if ! ls *.tar.bz2; then
 		touch blender.tar.bz2
@@ -30,18 +30,18 @@ if [ -e .cache/blender/internet.txt ]; then
 			rm *.tar.bz2
 		fi
 		echo "updating blender"
-		wget -r --no-parent -A 'blender-2.80*linux*x86_64.tar.bz2' https://builder.blender.org/download/
+		wget -r --no-parent -A 'blender-2.79*linux*x86_64.tar.bz2' https://builder.blender.org/download/
 		cd builder.blender.org/download
 		tar -xvjf *.tar.bz2
         mv *.tar.bz2 ../../
         mv ./blender* ./blender
 		rm -rf ../../blender
-		mv ./blender ~/.cache/blender
+		mv ./blender ~/.cache/blender7
 		cd ../..
 		chmod +x blender/blender
-		mv ./*.tar.bz2 ~/.cache/blender
+		mv ./*.tar.bz2 ~/.cache/blender7
 	fi
-	~/.cache/blender/blender/blender
+	~/.cache/blender7/blender/blender
 fi
 
 popd
