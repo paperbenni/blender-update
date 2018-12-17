@@ -1,0 +1,7 @@
+[Desktop Entry]
+Comment=blender git updater
+Terminal=false
+Name=blender-git
+Exec=~/workspace/blender-update/2.79.sh
+Type=Application
+Icon=~/workspace/blender-update/Blender2.70.svg

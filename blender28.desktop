@@ -1,0 +1,7 @@
+[Desktop Entry]
+Comment=blender 2.8 updater
+Terminal=false
+Name=blender-2.8
+Exec=~/workspace/blender-update/run.sh
+Type=Application
+Icon=~/workspace/blender-update/Blender2.80.svg

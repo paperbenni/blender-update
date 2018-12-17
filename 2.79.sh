@@ -17,6 +17,7 @@ fi
 
 
 if [ -e .cache/blender7/internet.txt ]; then
+	echo "checking for updates"
 	cd .cache/blender7
 	rm internet.txt
 	if ! ls *.tar.bz2; then
