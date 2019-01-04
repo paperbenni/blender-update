@@ -1,4 +1,9 @@
 #!/bin/bash
+
+if ! wget --version; then
+	echo "please install wget to proceed"
+fi
+
 pushd ~/
 if ! ls ~/.cache/blender8; then
 	mkdir -p .cache/blender8
@@ -14,7 +19,6 @@ if ! curl google.com; then
 else
 	echo internet >.cache/blender8/internet.txt
 fi
-
 
 if [ -e .cache/blender8/internet.txt ]; then
 	echo "checking for updates"
@@ -34,8 +38,8 @@ if [ -e .cache/blender8/internet.txt ]; then
 		wget -r --no-parent -A 'blender-2.80*linux*x86_64.tar.bz2' https://builder.blender.org/download/
 		cd builder.blender.org/download
 		tar -xvjf *.tar.bz2
-        mv *.tar.bz2 ../../
-        mv ./blender* ./blender
+		mv *.tar.bz2 ../../
+		mv ./blender* ./blender
 		rm -rf ../../blender
 		mv ./blender ~/.cache/blender8
 		cd ../..
