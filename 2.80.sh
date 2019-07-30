@@ -1,6 +1,6 @@
 #!/bin/bash
-if [ -e .cache/blender8/blender/blender ]; then
-    .cache/blender8/blender/blender
+if [ -e .cache/blender8/blender ]; then
+    .cache/blender8/blender
     exit 0
 fi
 
