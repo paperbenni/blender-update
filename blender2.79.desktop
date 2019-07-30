@@ -1,0 +1,7 @@
+[Desktop Entry]
+Comment=blender 2.79 updater
+Terminal=false
+Name=blender-2.79
+Exec=~/blender-update/2.79.sh
+Type=Application
+Icon=~/blender-update/Blender2.70.svg

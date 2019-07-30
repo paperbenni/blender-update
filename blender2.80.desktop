@@ -2,6 +2,6 @@
 Comment=blender 2.8 updater
 Terminal=false
 Name=blender-2.8
-Exec=~/workspace/blender-update/run.sh
+Exec=~/blender-update/2.80.sh
 Type=Application
 Icon=~/workspace/blender-update/Blender2.80.svg
