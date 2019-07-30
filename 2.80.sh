@@ -11,7 +11,7 @@ cd
 mkdir -p .cache/blendercache &> /dev/null
 cd .cache/blendercache
 echo "downloading blender"
-wget https://ftp.halifax.rwth-aachen.de/blender/release/Blender2.80/blender-2.80rc3-linux-glibc217-x86_64.tar.bz2
+wget https://ftp.halifax.rwth-aachen.de/blender/release/Blender2.80/blender-2.80-linux-glibc217-x86_64.tar.bz2
 tar -xvjf *.tar.bz2
 rm *.tar.bz2
 mv ./blender* ../blender8
