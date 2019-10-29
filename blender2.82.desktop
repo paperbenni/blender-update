@@ -2,6 +2,6 @@
 Comment=blender 2.82 updater
 Terminal=false
 Name=blender-2.82
-Exec=~/workspace/blender-update/2.82.sh
+Exec=HOME/workspace/blender-update/2.82.sh
 Type=Application
 Icon=blender

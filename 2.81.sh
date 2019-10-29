@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if pgrep 2.81.sh; then
+	echo "another one already running"
+	exit 1
+fi
+
 if ! wget --version; then
 	echo "please install wget to proceed"
 fi
