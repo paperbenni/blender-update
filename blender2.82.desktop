@@ -4,4 +4,4 @@ Terminal=false
 Name=blender-2.82
 Exec=~/workspace/blender-update/2.82.sh
 Type=Application
-Icon=~/workspace/blender-update/blender3.svg
+Icon=blender
