@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if pgrep 2.82.sh; then
-	echo "another one already running"
+if pgrep wget || pgrep blender || [ -e ~/.blenderupdating ]; then
+	echo "another instance already running"
 	exit 1
 fi
 
@@ -42,6 +42,7 @@ if [ -e .cache/blender82/internet.txt ]; then
 		echo "updating blender"
 		wget -r --no-parent -A 'blender-2.82*linux*x86_64.tar.bz2' https://builder.blender.org/download/
 		cd builder.blender.org/download
+		touch ~/.blenderupdating
 		tar -xvjf *.tar.bz2
 		mv *.tar.bz2 ../../
 		mv ./blender* ./blender
@@ -50,6 +51,7 @@ if [ -e .cache/blender82/internet.txt ]; then
 		cd ../..
 		chmod +x blender/blender
 		mv ./*.tar.bz2 ~/.cache/blender82
+		rm ~/.blenderupdating
 	fi
 	~/.cache/blender82/blender/blender
 fi

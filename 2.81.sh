@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if pgrep 2.81.sh; then
-	echo "another one already running"
+if pgrep wget || pgrep blender || [ -e ~/.blenderupdating ]; then
+	echo "another instance already running"
 	exit 1
 fi
 
