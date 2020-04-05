@@ -1,7 +1,0 @@
-[Desktop Entry]
-Comment=blender 2.82 updater
-Terminal=false
-Name=blender-2.82
-Exec=HOME/workspace/blender-update/2.82.sh
-Type=Application
-Icon=blender
