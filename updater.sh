@@ -1,4 +1,7 @@
 #!/bin/bash
+#########################################################
+## automatically updates and runs blender daily builds ##
+#########################################################
 
 if pgrep wget || pgrep blender || [ -e /tmp/blenderupdating ]; then
 	notify-send "the blender updater is already running"
@@ -10,7 +13,7 @@ if ! command -v wget &>/dev/null; then
 	echo "please install wget to proceed"
 fi
 
-mkdir -p ~/.cache/blender83
+[ -e ~/.cache/blender83 ] || mkdir -p ~/.cache/blender83
 cd ~/.cache/blender83 || exit
 curl -s 'https://builder.blender.org/download/' >download.html
 CURRENTVERSION="$(grep -o 'blender-2.83-[a-zA-Z0-9]*-linux64.tar.xz' download.html)"
