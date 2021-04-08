@@ -26,10 +26,9 @@ CURRENTVERSION="$(
         grep linux | tail -1 | grep -o '[^"]*' | grep -o '[^/]*$'
 )"
 
-if [ -e curversion ]; then
-    if [ "$CURRENTVERSION" = "$(cat curversion)" ]; then
-        echo "already up to date"
-    fi
+if [ -e curversion ] && [ "$CURRENTVERSION" = "$(cat curversion)" ]; then
+    
+    echo "blender already up to date"
 else
     echo "updating blender, please wait. "
     notify-send "updating blender, please wait. Do not open another instance"
@@ -45,6 +44,7 @@ else
     mv blender* blender
     chmod +x ./blender/blender
     rm /tmp/blenderupdating
+
 fi
 
 ./blender/blender
