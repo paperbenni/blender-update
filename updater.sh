@@ -3,7 +3,9 @@
 ## automatically updates and runs blender daily builds ##
 #########################################################
 
-if pgrep wget || pgrep blender || [ -e /tmp/blenderupdating ]; then
+if {
+    pgrep wget || pgrep blender || [ -e /tmp/blenderupdating ]
+} && ! [ "$1" = "-f" ]; then
     notify-send "the blender updater is already running"
     echo "another instance already running"
     exit 1
@@ -17,8 +19,8 @@ if ! command -v wget &>/dev/null; then
     exit 1
 fi
 
-[ -e ~/.cache/blender93 ] || mkdir -p ~/.cache/blender93
-cd ~/.cache/blender93 || exit
+[ -e ~/.cache/blender30 ] || mkdir -p ~/.cache/blender30
+cd ~/.cache/blender30 || exit
 
 echo "checking for updates"
 CURRENTVERSION="$(
@@ -27,7 +29,7 @@ CURRENTVERSION="$(
 )"
 
 if [ -e curversion ] && [ "$CURRENTVERSION" = "$(cat curversion)" ]; then
-    
+
     echo "blender already up to date"
 else
     echo "updating blender, please wait. "
