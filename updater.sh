@@ -23,13 +23,10 @@ fi
 cd ~/.cache/blender30 || exit
 
 echo "checking for updates"
-CURRENTVERSION="$(
-    curl -s https://builder.blender.org/download/ | grep -o '/download/blender[^"]*tar.xz"' |
-        grep linux | tail -1 | grep -o '[^"]*' | grep -o '[^/]*$'
-)"
+CURRENTVERSION="$(curl -s https://builder.blender.org/download/daily/ | grep -io '"[^"]*blender[^"]*3.0[^"]*linux[^"]*xz"' | sort -u | grep -o '[^"]*')"
+echo "current version $CURRENTVERSION"
 
 if [ -e curversion ] && [ "$CURRENTVERSION" = "$(cat curversion)" ]; then
-
     echo "blender already up to date"
 else
     echo "updating blender, please wait. "
@@ -37,8 +34,15 @@ else
     touch /tmp/blenderupdating
     rm -rf ./*blender*
     rm -rf ./blender*
-    wget https://builder.blender.org/download/"$CURRENTVERSION"
+    wget -q --show-progress "$CURRENTVERSION"
     echo "$CURRENTVERSION" >curversion
+    if ! ls | grep -q '\.tar\.xz'; then
+        echo 'blender download failed'
+        notify-send 'blender download failed'
+        rm /tmp/blenderupdating
+        rm curversion
+        exit 1
+    fi
     mv ./*.tar.xz blender.tar.xz
     notify-send "extracting blender archive"
     tar -xf blender.tar.xz
