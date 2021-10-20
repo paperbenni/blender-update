@@ -23,7 +23,7 @@ fi
 cd ~/.cache/blender30 || exit
 
 echo "checking for updates"
-CURRENTVERSION="$(curl -s https://builder.blender.org/download/daily/ | grep -io '"[^"]*blender[^"]*3.0[^"]*linux[^"]*xz"' | sort -u | grep -o '[^"]*')"
+CURRENTVERSION="$(curl -s https://builder.blender.org/download/daily/ | grep -io '"[^"]*blender[^"]*3.0.0[^"]*linux[^"]*xz"' | sort -u | grep -o '[^"]*')"
 echo "current version $CURRENTVERSION"
 
 if [ -e curversion ] && [ "$CURRENTVERSION" = "$(cat curversion)" ]; then
@@ -34,7 +34,8 @@ else
     touch /tmp/blenderupdating
     rm -rf ./*blender*
     rm -rf ./blender*
-    wget -q --show-progress "$CURRENTVERSION"
+    echo "downloading $CURRENTVERSION"
+    wget "$CURRENTVERSION"
     echo "$CURRENTVERSION" >curversion
     if ! ls | grep -q '\.tar\.xz'; then
         echo 'blender download failed'
