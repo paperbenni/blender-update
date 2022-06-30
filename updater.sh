@@ -19,11 +19,11 @@ if ! command -v wget &>/dev/null; then
     exit 1
 fi
 
-[ -e ~/.cache/blender30 ] || mkdir -p ~/.cache/blender30
-cd ~/.cache/blender30 || exit
+[ -e ~/.cache/blender33 ] || mkdir -p ~/.cache/blender33
+cd ~/.cache/blender33 || exit
 
 echo "checking for updates"
-CURRENTVERSION="$(curl -s https://builder.blender.org/download/daily/ | grep -io '"[^"]*blender[^"]*3.0.0[^"]*linux[^"]*xz"' | sort -u | grep -o '[^"]*')"
+CURRENTVERSION="$(curl -s https://builder.blender.org/download/daily/ | grep -io '"[^"]*blender[^"]*3.3.0[^"]*linux[^"]*xz"' | sort -u | grep -o '[^"]*')"
 echo "current version $CURRENTVERSION"
 
 if [ -e curversion ] && [ "$CURRENTVERSION" = "$(cat curversion)" ]; then
