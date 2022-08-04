@@ -19,8 +19,8 @@ if ! command -v wget &>/dev/null; then
     exit 1
 fi
 
-[ -e ~/.cache/blender33 ] || mkdir -p ~/.cache/blender33
-cd ~/.cache/blender33 || exit
+[ -e ~/.cache/blender34 ] || mkdir -p ~/.cache/blender34
+cd ~/.cache/blender34 || exit
 
 echo "checking for updates"
 CURRENTVERSION="$(curl -s https://builder.blender.org/download/daily/ | grep -io '"[^"]*blender[^"]*3.4.0[^"]*linux[^"]*xz"' | sort -u | grep -o '[^"]*')"
