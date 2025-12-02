@@ -7,7 +7,7 @@
 if {
     pgrep wget || pgrep blender || [ -e /tmp/blenderupdating ]
 } && ! [ "$1" = "-f" ]; then
-        notify-send "the blender updater is already running" &
+    notify-send "the blender updater is already running" &
     echo "another instance already running"
     exit 1
 fi
@@ -20,13 +20,15 @@ if ! command -v wget &>/dev/null; then
     exit 1
 fi
 
-BLENDERPATH="$($HOME/.cache/blender45)"
+BLENDERPATH="$($HOME/.cache/blender51)"
 
 [ -e "$BLENDERPATH" ] || mkdir -p "$BLENDERPATH"
 cd "$BLENDERPATH" || exit
 
 echo "checking for updates"
-CURRENTVERSION="$(curl -s https://builder.blender.org/download/daily/ | grep -io '"[^"]*blender[^"]*4.5.0[^"]*linux[^"]*xz"' | sort -u | grep -o '[^"]*')"
+CURRENTVERSION="$(curl -s https://builder.blender.org/download/daily/ |
+    grep -io '"[^"]*blender[^"]*5.1.0[^"]*linux[^"]*xz"' |
+    sort -u | grep -o '[^"]*')"
 echo "current version $CURRENTVERSION"
 
 if [ -e curversion ] && [ "$CURRENTVERSION" = "$(cat curversion)" ]; then
@@ -39,8 +41,7 @@ else
     rm -rf ./blender*
     echo "downloading $CURRENTVERSION"
 
-    if command -v aria2c
-    then
+    if command -v aria2c; then
         aria2c "$CURRENTVERSION"
     else
         wget "$CURRENTVERSION"
